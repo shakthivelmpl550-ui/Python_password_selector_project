@@ -1,0 +1,27 @@
+import random
+import string
+
+print("🔐 Password Creator 🔐")
+
+# Ask user for password length
+length = int(input("Enter password length: "))
+
+# Characters to choose from
+chars = string.ascii_letters + string.digits + "!@#$%^&*()"
+
+password = ""
+
+# Use for loop to build password
+for i in range(length):
+    # Pick a random character
+    char = random.choice(chars)
+
+    # Example of if-else: ensure at least one digit or symbol
+    if i == length - 1 and not any(c.isdigit() for c in password):
+        char = random.choice(string.digits)
+    elif i == length - 1 and not any(c in "!@#$%^&*()" for c in password):
+        char = random.choice("!@#$%^&*()")
+
+    password += char
+
+print("Your generated password is:", password)
